@@ -179,12 +179,16 @@ export const WorkerHttpController = {
     // Load workers from Redis and start them
     debugEnabled && debug('Loading workers from Redis...');
     const result = await redisClient.xrevrange(config.workerMetadataStream, '+', '-', 'COUNT', 1);
+    debugEnabled && debug(result);
     if (result.length > 0) {
       [[lastEventId]] = result
     }
+    debugEnabled && debug('stream');
     const stream = redisClient.hscanStream(workerMetadataKey, { count: 10 });
+    debugEnabled && debug('stream two');
     stream.on('data', (result: string[]) => {
       for (let i = 0; i < result.length; i += 2) {
+        debugEnabled && debug('stream loop: ' + i);
         const queueName = result[i];
         const value = result[i + 1];
 
