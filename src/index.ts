@@ -34,12 +34,11 @@ connection.on("ready", () => {
   info(`Connected to Redis at ${parsedUrl.host}`);
 });
 
-workersConnection = connection; //trying something stupid
 // Workers should never exahust the retries
-// workersConnection = connection.duplicate({
-//   maxRetriesPerRequest: null,
-//   enableOfflineQueue: true
-// });
+workersConnection = connection.duplicate({
+  maxRetriesPerRequest: null,
+  enableOfflineQueue: true
+});
 
 connection.on("error", (err) => {
   error(`Redis connection error: ${err.message}`);
