@@ -5,11 +5,6 @@ export const config = {
   port: parseInt(process.env.PORT || "8080", 10),
   redis: {
     url: process.env.REDIS_URL || undefined,
-    host: process.env.REDIS_HOST || "localhost",
-    port: process.env.REDIS_PORT ? parseInt(process.env.REDIS_PORT, 10) : 6379,
-    username: process.env.REDIS_USERNAME || undefined,
-    password: process.env.REDIS_PASSWORD || undefined,
-    tls: process.env.REDIS_TLS === "true" ? {} : undefined,
   },
   queueCacheSize: process.env.QUEUE_CACHE_SIZE ? parseInt(process.env.QUEUE_CACHE_SIZE) : 100,
   debugEnabled: process.env.DEBUG === "true",
