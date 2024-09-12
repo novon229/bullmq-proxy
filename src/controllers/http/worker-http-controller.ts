@@ -179,7 +179,12 @@ export const WorkerHttpController = {
     // Load workers from Redis and start them
     debugEnabled && debug('Loading workers from Redis...');
     debugEnabled && debug('Brandon Test log...');
-    debugEnabled && debug(redisClient.toString());
+    debugEnabled && debug(redisClient);
+    debugEnabled && debug(config.workerMetadataStream);
+    debugEnabled && debug(config.redis.host);
+    debugEnabled && debug(config.redis.username);
+    debugEnabled && debug(config.redis.password);
+    debugEnabled && debug(config.redis.port);
     const result = await redisClient.xrevrange(config.workerMetadataStream, '+', '-', 'COUNT', 1);
     debugEnabled && debug('Brandon Test log 2...');
     debugEnabled && debug(result);
