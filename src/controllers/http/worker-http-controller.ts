@@ -178,7 +178,9 @@ export const WorkerHttpController = {
   loadWorkers: async (redisClient: Redis | Cluster, workersRedisClient: Redis | Cluster) => {
     // Load workers from Redis and start them
     debugEnabled && debug('Loading workers from Redis...');
+    debugEnabled && debug('Brandon Test log...');
     const result = await redisClient.xrevrange(config.workerMetadataStream, '+', '-', 'COUNT', 1);
+    debugEnabled && debug('Brandon Test log 2...');
     debugEnabled && debug(result);
     if (result.length > 0) {
       [[lastEventId]] = result
